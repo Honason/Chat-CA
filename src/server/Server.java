@@ -53,20 +53,23 @@ public class Server {
         }
     }
 
-    public static void stopServer() {
-        keepRunning = false;
-    }
-
     public static void send(String msg, String sender) {
         // Message
         if (msg.indexOf(ProtocolStrings.MESSAGE) == 0) {
             String[] messageArray = msg.split("#");
             String message = messageArray[messageArray.length-1];
-            String[] recipients = messageArray[1].split(",");
-            for (String recipient : recipients){
+
+            if (messageArray[1].equals("*")) {
                 for (ClientHandler handler : clientHandlers) {
-                    if (recipient.equals(handler.clientName)) {
-                        handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                    handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                }
+            } else {
+                String[] recipients = messageArray[1].split(",");
+                for (String recipient : recipients){
+                    for (ClientHandler handler : clientHandlers) {
+                        if (recipient.equals(handler.clientName)) {
+                            handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                        }
                     }
                 }
             }
@@ -75,13 +78,16 @@ public class Server {
 
     public static void sendUserlist() {
         String userList = "";
-        for (ClientHandler handler : clientHandlers) {
-            userList += handler.clientName + ",";
-        }
-        userList = userList.substring(0,userList.length()-1);
 
-        for (ClientHandler handler : clientHandlers) {
-            handler.send(ProtocolStrings.USERLIST + userList);
+        if (clientHandlers.size() > 0) {
+            for (ClientHandler handler : clientHandlers) {
+                userList += handler.clientName + ",";
+            }
+            userList = userList.substring(0,userList.length()-1);
+
+            for (ClientHandler handler : clientHandlers) {
+                handler.send(ProtocolStrings.USERLIST + userList);
+            }
         }
     }
 

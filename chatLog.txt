@@ -1,32 +1,62 @@
-Sep 09, 2015 11:52:14 AM server.Server runServer
+Sep 09, 2015 2:58:33 PM server.Server runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
-Sep 09, 2015 11:52:21 AM server.Server runServer
+Sep 09, 2015 2:58:39 PM server.Server runServer
 INFO: Connected to a client
-Sep 09, 2015 11:52:25 AM server.ClientHandler run
-INFO: Received the message: SDF 
-Sep 09, 2015 11:52:34 AM server.ClientHandler send
-INFO: Received the message: MSG#CHAT SERVER#WELCOME JENSA 
-Sep 09, 2015 11:52:34 AM server.ClientHandler send
-INFO: Received the message: USERLIST#JENSA 
-Sep 09, 2015 11:53:07 AM server.ClientHandler send
-INFO: Received the message: MSG#JENSA#AHOJ JENSO 
-Sep 09, 2015 11:53:23 AM server.Server runServer
+Sep 09, 2015 2:58:44 PM server.Server runServer
 INFO: Connected to a client
-Sep 09, 2015 11:53:29 AM server.ClientHandler run
-INFO: Received the message: SDFADSF 
-Sep 09, 2015 11:53:35 AM server.ClientHandler send
-INFO: Received the message: MSG#CHAT SERVER#WELCOME ELIS 
-Sep 09, 2015 11:53:35 AM server.ClientHandler send
-INFO: Received the message: USERLIST#JENSA,ELIS 
-Sep 09, 2015 11:53:35 AM server.ClientHandler send
-INFO: Received the message: USERLIST#JENSA,ELIS 
-Sep 09, 2015 11:53:50 AM server.ClientHandler send
-INFO: Received the message: MSG#ELIS#AHOJ JENSO 
-Sep 09, 2015 11:54:02 AM server.ClientHandler send
-INFO: Received the message: MSG#JENSA#AHOJ ELIŠKO 
-Sep 09, 2015 11:54:55 AM server.ClientHandler run
+Sep 09, 2015 2:59:38 PM server.ClientHandler run
+INFO: Received the message: GFDGS 
+Sep 09, 2015 2:59:45 PM server.ClientHandler send
+INFO: Received the message: MSG#CHAT SERVER#WELCOME JAN 
+Sep 09, 2015 2:59:45 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,NULL 
+Sep 09, 2015 2:59:45 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,NULL 
+Sep 09, 2015 3:00:12 PM server.ClientHandler run
+INFO: Received the message: USER#SECOND 
+Sep 09, 2015 3:00:12 PM server.ClientHandler send
+INFO: Received the message: MSG#CHAT SERVER#WELCOME SECOND 
+Sep 09, 2015 3:00:12 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,SECOND 
+Sep 09, 2015 3:00:12 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,SECOND 
+Sep 09, 2015 3:01:00 PM server.ClientHandler run
 INFO: Closed a Connection
-Sep 09, 2015 11:54:55 AM server.ClientHandler send
-INFO: Received the message: USERLIST#JENSA 
-Sep 09, 2015 12:49:51 PM server.ClientHandler run
+Sep 09, 2015 3:01:00 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN 
+Sep 09, 2015 3:01:01 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 09, 2015 3:02:35 PM server.Server runServer
+INFO: Connected to a client
+Sep 09, 2015 3:02:43 PM server.Server runServer
+INFO: Connected to a client
+Sep 09, 2015 3:02:52 PM server.ClientHandler run
+INFO: Received the message: USER#JAN 
+Sep 09, 2015 3:02:52 PM server.ClientHandler send
+INFO: Received the message: MSG#CHAT SERVER#WELCOME JAN 
+Sep 09, 2015 3:02:52 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,NULL 
+Sep 09, 2015 3:02:52 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,NULL 
+Sep 09, 2015 3:03:00 PM server.ClientHandler run
+INFO: Received the message: USER#JENSA 
+Sep 09, 2015 3:03:00 PM server.ClientHandler send
+INFO: Received the message: MSG#CHAT SERVER#WELCOME JENSA 
+Sep 09, 2015 3:03:00 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,JENSA 
+Sep 09, 2015 3:03:00 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN,JENSA 
+Sep 09, 2015 3:03:16 PM server.ClientHandler send
+INFO: Received the message: MSG#JAN#AHOJ 
+Sep 09, 2015 3:03:43 PM server.ClientHandler send
+INFO: Received the message: MSG#JENSA#AHOJTE 
+Sep 09, 2015 3:03:43 PM server.ClientHandler send
+INFO: Received the message: MSG#JENSA#AHOJTE 
+Sep 09, 2015 3:04:02 PM server.ClientHandler send
+INFO: Received the message: MSG#JAN#KOOOL 
+Sep 09, 2015 3:04:07 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 09, 2015 3:04:07 PM server.ClientHandler send
+INFO: Received the message: USERLIST#JAN 
+Sep 09, 2015 3:04:09 PM server.ClientHandler run
 INFO: Closed a Connection
