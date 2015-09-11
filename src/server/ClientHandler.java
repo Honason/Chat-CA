@@ -5,6 +5,7 @@ import protocol.ProtocolStrings;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class ClientHandler extends Thread {
     }
 
     public void run() {
-        String message = input.nextLine(); //IMPORTANT blocking call
+        String message = input.nextLine();
         Logger.getLogger(Server.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ",message));
 
         while (!message.equals(ProtocolStrings.STOP)) {
@@ -36,7 +37,11 @@ public class ClientHandler extends Thread {
                 Server.send(message, clientName);
             }
 
-            message = input.nextLine(); //IMPORTANT blocking call
+            try {
+                message = input.nextLine();
+            } catch (NoSuchElementException e) {
+                break;
+            }
         }
 
         writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown
@@ -52,6 +57,6 @@ public class ClientHandler extends Thread {
 
     public void send(String message) {
         writer.println(message);
-        Logger.getLogger(Server.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ",message));
+        Logger.getLogger(Server.class.getName()).log(Level.INFO, String.format("Sent the message: %1$S ",message));
     }
 }

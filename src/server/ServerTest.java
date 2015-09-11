@@ -18,6 +18,12 @@ public class ServerTest {
                 Server.main(null);
             }
         }).start();
+
+        try {
+            Thread.sleep(100);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     @Before
@@ -31,39 +37,94 @@ public class ServerTest {
     }
 
     @Test
-    public void testMain() throws Exception {
-
-    }
-
-    @Test
-    public void testSend() throws Exception {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
+    public void testConnect() throws Exception {
         Client client = new Client();
         client.connect("localhost",9090);
+        Client client2 = new Client();
+        client2.connect("localhost",9090);
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
-        assertTrue("Client is connected", Server.clientHandlers.size() == 1);
-
+        assertTrue("Clients are connected", Server.clientHandlers.size() == 2);
         //assertEquals("HELLO", client.receive());
+        client.send("STOP#");
+        client2.send("STOP#");
     }
 
     @Test
     public void testSendUserlist() throws Exception {
+        Client client = new Client();
+        client.connect("localhost", 9090);
+        client.runChecker();
 
+        client.send("USER#Jensa");
+
+        try {
+            Thread.sleep(100);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        int msgFound = 0;
+        for (String message : client.getMessageList()) {
+            if (message.equals("MSG#Chat server#Welcome Jensa")) {
+                msgFound++;
+            } else if (message.contains("Jensa") && message.contains("USERLIST#")) {
+                msgFound++;
+            }
+        }
+        assertTrue(msgFound == 2);
+
+        client.send("STOP#");
     }
 
     @Test
-    public void testRemoveHandler() throws Exception {
+    public void testSendMessage() throws Exception {
+        Client client = new Client();
+        client.connect("localhost", 9090);
+        client.runChecker();
 
+        Client client2 = new Client();
+        client2.connect("localhost", 9090);
+        client2.runChecker();
+
+        client.send("USER#user1");
+        client2.send("USER#user2");
+
+        try {
+            Thread.sleep(100);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        client.send("MSG#user2#Hi User 2");
+        client2.send("MSG#user1#Hi User 1");
+
+        try {
+            Thread.sleep(100);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        int msgFound = 0;
+        for (String message : client.getMessageList()) {
+            if (message.equals("MSG#user2#Hi User 1")) {
+                msgFound++;
+            }
+        }
+        for (String message : client2.getMessageList()) {
+            if (message.equals("MSG#user1#Hi User 2")) {
+                msgFound++;
+            }
+        }
+
+        assertTrue("Message received", msgFound == 2);
+
+        client.send("STOP#");
+        client2.send("STOP#");
     }
 }

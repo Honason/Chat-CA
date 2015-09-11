@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -61,7 +60,10 @@ public class Server {
 
             if (messageArray[1].equals("*")) {
                 for (ClientHandler handler : clientHandlers) {
-                    handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                    if (handler.clientName != null && !handler.clientName.equals(sender)) {
+                        handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                        Logger.getLogger(Server.class.getName()).log(Level.INFO, "Message sent from: " + sender + ": " + message);
+                    }
                 }
             } else {
                 String[] recipients = messageArray[1].split(",");
@@ -69,6 +71,7 @@ public class Server {
                     for (ClientHandler handler : clientHandlers) {
                         if (recipient.equals(handler.clientName)) {
                             handler.send(ProtocolStrings.MESSAGE + sender + "#" + message);
+                            Logger.getLogger(Server.class.getName()).log(Level.INFO, "Message sent from: " + sender + ": " + message);
                         }
                     }
                 }
@@ -81,12 +84,18 @@ public class Server {
 
         if (clientHandlers.size() > 0) {
             for (ClientHandler handler : clientHandlers) {
-                userList += handler.clientName + ",";
+                if (handler.clientName != null) {
+                    userList += handler.clientName + ",";
+                }
             }
-            userList = userList.substring(0,userList.length()-1);
+            if (!userList.equals("")) {
+                userList = userList.substring(0,userList.length()-1);
+            }
 
             for (ClientHandler handler : clientHandlers) {
-                handler.send(ProtocolStrings.USERLIST + userList);
+                if (handler.clientName != null) {
+                    handler.send(ProtocolStrings.USERLIST + userList);
+                }
             }
         }
     }
