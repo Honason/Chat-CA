@@ -78,49 +78,44 @@ public class GUI implements Observer {
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(userList.getSelectedIndex() == 0)
+                if (userList.getSelectedIndex() == 0)
                     send(textField.getText());
                 else {
                     String recepients = "";
                     for (String recepient : (ArrayList<String>) userList.getSelectedValuesList()) {
                         recepients += recepient + ",";
                     }
-                    if(recepients.length() > 0)
+                    if (recepients.length() > 0)
                         recepients = recepients.substring(0, recepients.length() - 1);
-                    if(!textField.getText().equals(""))
+                    if (!textField.getText().equals(""))
                         send("/w " + recepients + "/" + textField.getText());
-                    textField.setText("");
                 }
+                textField.setText("");
             }
         });
 
-        userList.setSelectionModel(new DefaultListSelectionModel() 
-        {
+        userList.setSelectionModel(new DefaultListSelectionModel() {
             @Override
-            public void setSelectionInterval(int index0, int index1) 
-            {
-                if(index0 == index1) { // Single click
-                    if(userList.isSelectedIndex(index0)) 
-                    {
-                        if(userList.getSelectedIndices().length == 1) { // if deselect all, select first index (All)
+            public void setSelectionInterval(int index0, int index1) {
+                if (index0 == index1) { // Single click
+                    if (userList.isSelectedIndex(index0)) {
+                        if (userList.getSelectedIndices().length == 1) { // if deselect all, select first index (All)
                             userList.removeSelectionInterval(0, userListData.size() - 1);
                             userList.addSelectionInterval(0, 0);
                         } else
-                        userList.removeSelectionInterval(index0, index1);
-                    }
-                    else 
-                    {
-                        if(index0 == 0 && index1 == 0) {
+                            userList.removeSelectionInterval(index0, index1);
+                    } else {
+                        if (index0 == 0 && index1 == 0) {
                             userList.removeSelectionInterval(0, userListData.size() - 1);
                         } else
-                        userList.removeSelectionInterval(0, 0);
+                            userList.removeSelectionInterval(0, 0);
                         userList.addSelectionInterval(index0, index1);
                     }
                 } else {
-                    if(index0 == 0 || index1 == 0) {
+                    if (index0 == 0 || index1 == 0) {
                         userList.removeSelectionInterval(0, userListData.size() - 1);
                         userList.addSelectionInterval(0, 0);
-                    } else if(userList.isSelectedIndex(index0)) {
+                    } else if (userList.isSelectedIndex(index0)) {
                         userList.addSelectionInterval(index0, index1);
                     } else {
                         userList.removeSelectionInterval(index0, index1);
@@ -130,8 +125,6 @@ public class GUI implements Observer {
 
             }
         });
-
-        userList.addSelectionInterval(0, 0);
 
         panel.add(scrollPane, "w 100, growy");
         panel.add(userList, "w 100, h 300");
@@ -156,6 +149,8 @@ public class GUI implements Observer {
                         userList.addSelectionInterval(userListData.size() - 1, userListData.size() - 1);
                 }
             }
+            if(selectedPeople.size() == 0)
+                userList.addSelectionInterval(0,0);
         } else if(msg.indexOf(ps.MESSAGE) == 0) {
             Calendar rightNow = Calendar.getInstance();
             String time = rightNow.get(Calendar.HOUR_OF_DAY) + ":" + rightNow.get(Calendar.MINUTE);
@@ -165,8 +160,13 @@ public class GUI implements Observer {
             msg = kappafy(msg);
             try {
                 HTMLDocument doc=(HTMLDocument) textPane.getStyledDocument();
-                doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<font style='font-size:11px'><font style='color:gray'>" + time + " " + sender + "</font>: " + msg + "</font><br>");
+                doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),
+                        "<font style='font-size:11px'><font style='color:gray'>" + time + " " + kappafy(sender) + "</font>: " + msg + "</font><br>");
+
             } catch(Exception e){}
+
+            JScrollBar vertical = scrollPane.getVerticalScrollBar();
+            vertical.setValue( vertical.getMaximum() );
         }
     }
 
@@ -186,8 +186,8 @@ public class GUI implements Observer {
     }
 
     public void init() {
-        JTextField setNameField   = new JTextField(18);
-        setNameField.setPreferredSize( new Dimension(200, 30));
+        final JTextField setNameField   = new JTextField(18);
+        setNameField.setPreferredSize(new Dimension(200, 30));
         setNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

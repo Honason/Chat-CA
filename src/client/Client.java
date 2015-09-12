@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -18,6 +19,11 @@ public class Client extends Observable {
     private InetAddress serverAddress;
     private Scanner input;
     private PrintWriter output;
+    private static ArrayList<String> messageList = new ArrayList();
+
+    public ArrayList<String> getMessageList() {
+        return messageList;
+    }
 
     public void connect(String address, int port) throws UnknownHostException, IOException
     {
@@ -65,6 +71,7 @@ public class Client extends Observable {
         Thread t = new Thread(new Runnable() { public void run() {
             while (true) {
                 String msg = input.nextLine();
+                messageList.add(msg);
                 setChanged();
                 notifyObservers(msg);
 

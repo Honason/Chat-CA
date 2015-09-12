@@ -1,2 +1,64 @@
-Sep 11, 2015 3:03:07 PM server.Server runServer
+Sep 12, 2015 6:10:48 PM server.Server runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
+Sep 12, 2015 6:10:48 PM server.Server runServer
+INFO: Connected to a client
+Sep 12, 2015 6:10:48 PM server.Server runServer
+INFO: Connected to a client
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Received the message: USER#USER1 
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Received the message: USER#USER2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: MSG#CHAT SERVER#WELCOME USER1 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: MSG#CHAT SERVER#WELCOME USER2 
+Sep 12, 2015 6:10:48 PM server.Server send
+INFO: Message sent from: Chat server: Welcome user1
+Sep 12, 2015 6:10:48 PM server.Server send
+INFO: Message sent from: Chat server: Welcome user2
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#USER1,USER2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#USER1,USER2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#USER1,USER2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#USER1,USER2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: MSG#USER1#HI USER 2 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: MSG#USER2#HI USER 1 
+Sep 12, 2015 6:10:48 PM server.Server send
+INFO: Message sent from: user1: Hi User 2
+Sep 12, 2015 6:10:48 PM server.Server send
+INFO: Message sent from: user2: Hi User 1
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#USER1 
+Sep 12, 2015 6:10:48 PM server.Server runServer
+INFO: Connected to a client
+Sep 12, 2015 6:10:48 PM server.Server runServer
+INFO: Connected to a client
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Received the message: STOP# 
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Received the message: STOP# 
+Sep 12, 2015 6:10:48 PM server.Server runServer
+INFO: Connected to a client
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Closed a Connection
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Received the message: USER#JENSA 
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: MSG#CHAT SERVER#WELCOME JENSA 
+Sep 12, 2015 6:10:48 PM server.Server send
+INFO: Message sent from: Chat server: Welcome Jensa
+Sep 12, 2015 6:10:48 PM server.ClientHandler send
+INFO: Sent the message: USERLIST#JENSA 
+Sep 12, 2015 6:10:48 PM server.ClientHandler run
+INFO: Closed a Connection

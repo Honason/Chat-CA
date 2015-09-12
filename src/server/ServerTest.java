@@ -40,8 +40,10 @@ public class ServerTest {
     public void testConnect() throws Exception {
         Client client = new Client();
         client.connect("localhost",9090);
+        client.runChecker();
         Client client2 = new Client();
         client2.connect("localhost",9090);
+        client2.runChecker();
 
         try {
             Thread.sleep(100);
@@ -78,7 +80,6 @@ public class ServerTest {
             }
         }
         assertTrue(msgFound == 2);
-
         client.send("STOP#");
     }
 
